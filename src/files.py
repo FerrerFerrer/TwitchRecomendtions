@@ -1,3 +1,5 @@
+import pickle #converts python objects into string representation and viceversa
+
 #Add a channel locally
 def addFollower(channel):
     pass
@@ -12,4 +14,10 @@ def saveFollowers(path):
 
 #Retrive a lost of Channeles from a file
 def retriveFollowers(path):
+    pass
+
+def save(path, obj):
+    pass
+
+def load(path):
     pass

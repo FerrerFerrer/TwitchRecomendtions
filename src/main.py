@@ -1,13 +1,25 @@
 #Main program - User Interface
 
-#Imports
-import pickle #converts python objects into string representation and viceversa
-
 #Global variables
 ls_channel = [] #List to saves the user fav channels
-PATH = "saves\{}.txt" #Static path name to save options for later
+ls_blocked_channels = [] #Try not to recomendate this channel
 
-def printOptions():
+MOTHER_PATH = "saves\{}.txt" #Static path name to save options for later
+DEPTH = 1 #How many layers it is going to calculate (op -> follower -> follower) for today only 1 layer deep
+C_ACTIVITY = False #Compute and ponder based on the channel activity
+LIMIT_RECOMENDATIONS = 5 #How many channels its going to calculate
+AVOID_BLOCKED = False #Avoid blocked channels to recomendations (blocked and double recomendations)
+
+def getOptions():
+    return """
+    1. Load Options
+    2. Save Options
+    3. Add channel
+    4. Remove channel
+    5. Block channel
+    6. Calculate
+    7. Get Recomendations
+    0. Quit"""
     pass
 
 def takeAction():
@@ -17,6 +29,7 @@ def doAction(comand):
     pass
 
 def main():
+    print(getOptions())
     # static_sim = "saves\{}.txt"
     # ls_channel.append("Prueba")
     # t = 0

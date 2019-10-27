@@ -3,15 +3,26 @@ class Channel:
         self.id = id
         self.ponderation = ponderation
         self.followers = []
+        self.blocked = False
 
     def addPonderation(num):
-        self.ponderation += num
+        if(not blocked):
+            self.ponderation += num
+        else:
+            return -1
 
     def multiplyPonderation(num):
-        self.ponderation *= num
+        if(not blocked):
+            self.ponderation *= num
+        else:
+            return -1
+
 
     def resetPonderation():
-        self.ponderation = 0
+        if(not blocked):
+            self.ponderation = 0
+        else:
+            return -1
 
     def changeId(id):
         self.id = id
@@ -23,5 +34,13 @@ class Channel:
         self.followers.remove(channel)
 
     def getFollowers():
-        #return something
+        #return something[]
         pass
+
+    def block(b):
+        self.blocked = b
+
+        if self.blocked:
+            self.ponderation = -9999999
+        else:
+            self.resetPonderation()
