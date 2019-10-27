@@ -24,5 +24,10 @@ def getFollowersFromChannel(channel):
 def ponderByUnionOfChannels(channels):
     pass
 
+#It ponders by recent activity of the user, day, week, month, etc..
+def ponderByActivity(channel):
+    pass
+
+    
 if __name__ == '__main__':
     main()

@@ -6,4 +6,8 @@ class Channel:
     def addPonderation(num):
         self.ponderation += num
 
-    
+    def multiplyPonderation(num):
+        self.ponderation *= num
+
+    def resetPonderation():
+        self.ponderation = 0
