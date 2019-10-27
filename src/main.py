@@ -2,6 +2,15 @@
 
 ls_channel = []
 
+def printOptions():
+    pass
+
+def takeAction():
+    pass
+
+def doAction(comand):
+    pass
+
 def main():
     pass
 
