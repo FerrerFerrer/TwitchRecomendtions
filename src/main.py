@@ -2,7 +2,6 @@
 
 #Global variables
 ls_channel = [] #List to saves the user fav channels
-ls_blocked_channels = [] #Try not to recomendate this channel
 
 MOTHER_PATH = "saves\{}.txt" #Static path name to save options for later
 DEPTH = 1 #How many layers it is going to calculate (op -> follower -> follower) for today only 1 layer deep
