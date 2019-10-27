@@ -21,3 +21,7 @@ class Channel:
 
     def removeFollower(channel):
         self.followers.remove(channel)
+
+    def getFollowers():
+        #return something
+        pass
