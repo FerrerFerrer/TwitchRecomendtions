@@ -1,7 +1,8 @@
 class Channel:
     def __init__(self, id, ponderation = 0):
         self.id = id
-        self. ponderation = ponderation
+        self.ponderation = ponderation
+        self.followers = []
 
     def addPonderation(num):
         self.ponderation += num
@@ -14,3 +15,9 @@ class Channel:
 
     def changeId(id):
         self.id = id
+
+    def addFollower(channel):
+        self.followers.append(channel)
+
+    def removeFollower(channel):
+        self.followers.remove(channel)
