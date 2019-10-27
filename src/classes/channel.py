@@ -11,3 +11,6 @@ class Channel:
 
     def resetPonderation():
         self.ponderation = 0
+
+    def changeId(id):
+        self.id = id
