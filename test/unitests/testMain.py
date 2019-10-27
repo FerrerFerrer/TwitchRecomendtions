@@ -1,3 +1,5 @@
 import unittest
 import os
-from ....src.main import getOptions
+import sys
+sys.path.append('../../src')
+import main
