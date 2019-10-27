@@ -20,7 +20,6 @@ def getOptions():
     6. Calculate
     7. Get Recomendations
     0. Quit"""
-    pass
 
 def takeAction():
     pass
