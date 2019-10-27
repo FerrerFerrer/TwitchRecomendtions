@@ -10,6 +10,14 @@ C_ACTIVITY = False #Compute and ponder based on the channel activity
 LIMIT_RECOMENDATIONS = 5 #How many channels its going to calculate; -1 for all
 AVOID_BLOCKED = False #Avoid blocked channels to recomendations (blocked and double recomendations)
 
+#Add a channel locally
+def addFollower(channel):
+    pass
+
+#Reomve a channel locally
+def removeFollower(channel):
+    pass
+
 def getOptions():
     return """
     1. Load Options
