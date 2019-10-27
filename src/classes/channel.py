@@ -1,7 +1,7 @@
 class Channel:
     def __init__(self, id, ponderation = 0):
         self.id = id
-        self.ponderation = ponderation
+        self._ponderation = ponderation
         self.followers = []
         self.blocked = False
 
@@ -16,7 +16,6 @@ class Channel:
             self.ponderation *= num
         else:
             return -1
-
 
     def resetPonderation():
         if(not blocked):
