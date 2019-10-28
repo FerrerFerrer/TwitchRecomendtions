@@ -8,6 +8,7 @@ DEPTH = 1 #How many layers it is going to calculate (op -> follower -> follower)
 C_ACTIVITY = False #Compute and ponder based on the channel activity
 LIMIT_RECOMENDATIONS = 5 #How many channels its going to calculate; -1 for all
 AVOID_BLOCKED = True #Avoid blocked channels to recomendations (blocked and double recomendations)
+DEBUG = True #If true, then print debug information to console 
 
 #Add a channel locally
 def addFollower(channel):
