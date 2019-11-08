@@ -14,16 +14,19 @@ HEADS = {
 }
 
 nombre = "albertto1198"
-nombre = "Ellis97d"
+nombre = "null"
 URL = "https://api.twitch.tv/kraken/users?login={}".format(nombre)
 r = requests.get(url = URL, headers = HEADS)
 
 temp = r.json()
-id = temp["users"][0]["_id"]
+try:
+    id = temp["users"][0]["_id"]
 
-t = client.get_user_follows(from_id = id)
-for i in t:
-    print(i["to_name"])
+    t = client.get_user_follows(from_id = id)
 
+    for i in t:
+        print(i["to_name"])
+except:
+    print("Some error occured")
 #print(client.get_user_follows(from_id = "118237854"))
 #print(client.get)
