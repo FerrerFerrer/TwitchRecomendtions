@@ -5,6 +5,7 @@ class AbstactClassApi(ABC):
         super().__init__()
         self.client_id = client_id
         self.oauth_token = oauth_token
+        self.accept = accept
         self.HEADS = {
             "Accept" : self.accept,
             "Client-ID" : self.client_id
