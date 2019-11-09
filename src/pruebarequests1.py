@@ -14,7 +14,7 @@ HEADS = {
 }
 
 nombre = "albertto1198"
-nombre = "null"
+nombre = "m60_"
 URL = "https://api.twitch.tv/kraken/users?login={}".format(nombre)
 r = requests.get(url = URL, headers = HEADS)
 

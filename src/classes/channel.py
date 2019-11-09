@@ -1,9 +1,10 @@
 class Channel:
-    def __init__(self, id, ponderation = 0):
+    def __init__(self, id, ponderation = 0, name = ""):
         self.id = id
         self._ponderation = ponderation
         self.followers = []
         self.blocked = False
+        self.name = name
 
     def addPonderation(num):
         if(not blocked):
