@@ -11,5 +11,13 @@ class AbstactClassApi(ABC):
             }
 
     @abstractmethod
-    def do_something(self):
+    def get_userid(self, name):
+        pass
+
+    @abstractmethod
+    def get_followers(self, id):
+        pass
+
+    @abstractmethod
+    def get_name(self, id):
         pass
