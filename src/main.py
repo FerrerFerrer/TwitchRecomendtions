@@ -25,10 +25,20 @@ def getOptions():
     7. Get Recomendations
     0. Quit"""
 
+def getChannel():
+    print("Enter name of channel: ")
+    chan = input(">> ")
+    return chan
+
 def takeAction():
     errors = 0
     ret = -1
     while(ret is -1):
+        if errors is 3:
+            print("\nTo many errors! Here are the options again:")
+            print(getOptions())
+            errors = 0
+
         try:
             c = int(input("> "))
             if c <= -1 or c >= 8:
@@ -37,29 +47,38 @@ def takeAction():
             ret = c
         except:
             print("Please only numbers!")
+            
+        errors += 1
     return c
 
 def doAction(comand):
-    global ls_channel
     if comand is 0:
         print("Goodbye!")
         sys.exit()
+
     elif comand is 1:
         workingbolt.ls_channel = coneccion_bd.get_list()
+
     elif comand is 2:
         coneccion_bd.save_list(workingbolt.ls_channel)
-    elif comand is 3:
-        workingbolt.addChanel("123")
-    elif comand is 4:
-        workingbolt.removeChanel("123")
-    elif comand is 5:
-        workingbolt.blockChanel("123")
+
+    elif comand >= 3 and comand <= 5:
+        channel = getChannel()
+        if comand is 3:
+            workingbolt.addChanel(channel)
+        elif comand is 4:
+            workingbolt.removeChanel(channel)
+        else:
+            workingbolt.blockChanel(channel)
+
     elif comand is 6:
         workingbolt.calculate()
+
     elif comand is 7:
         workingbolt.printRecomendations()
+
     else:
-        print("Some error occured")
+        print("How did you got here? o.O")
 
 def main():
     print(getOptions())
