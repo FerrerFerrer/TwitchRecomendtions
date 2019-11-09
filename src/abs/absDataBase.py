@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class AbstactClassApi(ABC):
+class AbstactClassDB(ABC):
     def __init__(self):
         super().__init__()
 
