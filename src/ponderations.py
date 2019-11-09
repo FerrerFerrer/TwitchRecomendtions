@@ -5,7 +5,7 @@ import random
 #     pass
 
 def ponderByFollowers(channel):
-    #folowes       : mult
+    #folowers       : mult
     #0      -   100: 1.0
     #101    -  1000: 1.5
     #1001   -  5000: 1.8
@@ -21,6 +21,7 @@ def ponderByFollowers(channel):
 def ponderByUnionOfChannels(channels):
     rep = {}
     for channel in channels:
+        ## FIXME: 
         #multiplyer = ponderByFollowers(channel)
         multiplyer = random.random() + 1
         for subchannel in channel: #channel.getFollowers():
