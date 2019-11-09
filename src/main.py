@@ -33,9 +33,10 @@ def getChannel():
 def takeAction():
     errors = 0
     ret = -1
+
     while(ret is -1):
         if errors is 3:
-            print("\nTo many errors! Here are the options again:")
+            print("\nTo many errors!\nHere are the options again:")
             print(getOptions())
             errors = 0
 
@@ -47,7 +48,7 @@ def takeAction():
             ret = c
         except:
             print("Please only numbers!")
-            
+
         errors += 1
     return c
 
