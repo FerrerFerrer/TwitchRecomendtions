@@ -26,7 +26,7 @@ def ponderByUnionOfChannels(channels):
     for channel in channels:
         ## FIXME:
         #multiplyer = ponderByFollowers(channel)
-        multiplyer = len()
+        #multiplyer = len()
         multiplyer = random.random() + 1
         for subchannel in channel: #channel.getFollowers():
             if subchannel in rep.keys():
