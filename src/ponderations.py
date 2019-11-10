@@ -5,6 +5,8 @@ import random
 #     pass
 
 def ponderByFollowers(channel):
+    #sigue = len(api.get_followe())
+
     #folowers       : mult
     #0      -   100: 1.0
     #101    -  1000: 1.5
@@ -15,14 +17,16 @@ def ponderByFollowers(channel):
     #900001+       : 5.0
 
     #return mult/following
+    #return multi / len(api.get_followers())
     pass
 
 #It adds to the ponderation bases on how many local channels follow the same one
 def ponderByUnionOfChannels(channels):
     rep = {}
     for channel in channels:
-        ## FIXME: 
+        ## FIXME:
         #multiplyer = ponderByFollowers(channel)
+        multiplyer = len()
         multiplyer = random.random() + 1
         for subchannel in channel: #channel.getFollowers():
             if subchannel in rep.keys():
@@ -46,13 +50,15 @@ def ponderByNewUser(channel):
 def maint():
     ch1 = ["a", "b", "d", "p"]
     ch2 = ["a", "d", "c", "f"]
-    ch3 = ["a", "b", "d", "e"]
+    ch3 = ["a", "b", "e"]
     ch4 = ["a", "b", "c", "d"]
+    ch5 = ["d"]
     mother_of_channels = []
     mother_of_channels.append(ch1)
     mother_of_channels.append(ch2)
     mother_of_channels.append(ch3)
     mother_of_channels.append(ch4)
+    mother_of_channels.append(ch5)
 
     f = ponderByUnionOfChannels(mother_of_channels)
     print(f)

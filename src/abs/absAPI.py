@@ -22,3 +22,7 @@ class AbstactClassApi(ABC):
     @abstractmethod
     def get_name(self, id):
         pass
+
+    @abstractmethod
+    def get_followe(self, id):
+        pass
