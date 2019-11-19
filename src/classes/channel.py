@@ -34,8 +34,7 @@ class Channel:
         self.followers.remove(channel)
 
     def getFollowers():
-        #return something[]
-        pass
+        return self.followers
 
     def block(b):
         self.blocked = b

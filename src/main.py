@@ -43,7 +43,6 @@ def takeAction():
             #c = input("> ")
             c = int(input("> "))
             #DEBUG.append(c)
-            c = int(c)
             if c <= -1 or c >= 8:
                 print("Out of bounds!")
                 c = -1
@@ -83,11 +82,14 @@ def doAction(comand):
     else:
         print("How did you got here? o.O")
 
-def main():
+def main(deb):
     print(getOptions())
-    while(True):
+    loop = True
+    while(loop):
         com = takeAction()
         doAction(com)
+        if deb:
+            loop = False
 
 if __name__ == '__main__':
-    main()
+    main(False)
