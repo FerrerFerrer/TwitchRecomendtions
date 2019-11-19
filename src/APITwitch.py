@@ -2,12 +2,7 @@ import requests
 import twitch
 from twitch import TwitchClient, TwitchHelix
 
-client = TwitchClient(client_id= 'vnsbdjciw4fcif1k57w1c07a65wk03', oauth_token= 'oauth:17qyf4koyvfdqjs4me7zr451lccmtn')
-HEADS = {
-"Accept" : "application/vnd.twitchtv.v5+json",
-"Client-ID" : "vnsbdjciw4fcif1k57w1c07a65wk03"
-#"Authorization" : "OAuth 17qyf4koyvfdqjs4me7zr451lccmtn"
-}
+
 
 #Esta es la forma en la que se obtiene el numero de seguidores en base al id de usuario
 
@@ -32,6 +27,7 @@ def canales_de_cliente(username):
     namefollows = []
     for i in t:
         namefollows.append(i["to_name"])
+    #print(namefollows)
     return namefollows
 
 #canales = canales_de_cliente("albertto1198")
@@ -79,6 +75,12 @@ def agrupacioncanales(lista):
 
 #En esta funcion se crea una lista donde se guardaran el numero de usuarios que siguen a cada Streamer de la lista generada en la funcion agrupacioncanales
 def evaluacion(lista):
+    client = TwitchClient(client_id= 'vnsbdjciw4fcif1k57w1c07a65wk03', oauth_token= 'oauth:17qyf4koyvfdqjs4me7zr451lccmtn')
+    HEADS = {
+    "Accept" : "application/vnd.twitchtv.v5+json",
+    "Client-ID" : "vnsbdjciw4fcif1k57w1c07a65wk03"
+    #"Authorization" : "OAuth 17qyf4koyvfdqjs4me7zr451lccmtn"
+    }
     listaaevaluar = lista
     print("Lista antes de ser modificada para recomendar")
     print(listaaevaluar)
@@ -96,16 +98,16 @@ def evaluacion(lista):
         lista_seguidores.append(seguidoresStreamer["followers"]) #Aqui se obtiene el numero de seguidores
         print("Lista de numero de seguidores")
         print(lista_seguidores)
-    print("esta es la lista a evaluar")
-    print(listaaevaluar)
-    print("esta es la lista de nombres")
-    print(lista_nombres)
-    print("----------------------------------------------------------------------------------")
-    print(len(lista_nombres))
-    print("Esta es la lista con numero de seguidores")
-    print(lista_seguidores)
-    print("----------------------------------------------------------------------------------")
-    print(len(lista_seguidores))
+    #print("esta es la lista a evaluar")
+    #print(listaaevaluar)
+    #print("esta es la lista de nombres")
+    #print(lista_nombres)
+    #print("----------------------------------------------------------------------------------")
+    #print(len(lista_nombres))
+    #print("Esta es la lista con numero de seguidores")
+    #print(lista_seguidores)
+    #print("----------------------------------------------------------------------------------")
+    #print(len(lista_seguidores))
     listas = [lista_nombres, lista_seguidores] #ya que no se pueden regresar dos listas en un return agregue la lista de los nombres y de los seguidores en una sola lista
     return listas
 
@@ -146,21 +148,53 @@ def recomendaciones(lista):
     #    print("STREAMER RECOMENDADO: ", streamer_recomendado)
     #    print("seguidores de Streamer recomendado: ", streamerR_seguidores)
 
-    print(lista_recomendados)
-    print(lista_num_seguidores)
+    #print(lista_recomendados)
+    #print(lista_num_seguidores)
     return lista_recomendados
+
+
 #####################################################################################################################################################################
-canales = canales_de_cliente("albertto1198") #Aqui debe de estar el input() para que el cliente ponga su nombre de twitch
-print("Estos son tus canales")
-print(canales)
 
-prueba2 = agrupacioncanales(canales)
-print("estos se van a evaluar")
-print(prueba2)
+def ban_list(lista):
+    client = TwitchClient(client_id= 'vnsbdjciw4fcif1k57w1c07a65wk03', oauth_token= 'oauth:17qyf4koyvfdqjs4me7zr451lccmtn')
+    HEADS = {
+    "Accept" : "application/vnd.twitchtv.v5+json",
+    "Client-ID" : "vnsbdjciw4fcif1k57w1c07a65wk03"
+    #"Authorization" : "OAuth 17qyf4koyvfdqjs4me7zr451lccmtn"
+    }
+    recomendados = lista
+    lista_baneados = []
+    j = 0
+    while True:
+        id_streamer = name_to_id(recomendados[j])
+        print("id de Streamer")
+        print(id_streamer)
+        baneados = client.users.get_user_block_list(id_streamer)
+        lista_baneados.append(baneados)
+        if(j > len(recomendados)):
+            break
+    print(lista_baneados)
+    return lista_baneados
 
-evaluation = evaluacion(prueba2)
+def main():
+    canales = canales_de_cliente("albertto1198") #Aqui debe de estar el input() para que el cliente ponga su nombre de twitch
+    print("Estos son tus canales")
+    print(canales)
 
-streamers = recomendaciones(evaluation)
+    prueba2 = agrupacioncanales(canales)
+    print("estos se van a evaluar")
+    print(prueba2)
 
-print("RECOMENDACIONES")
-print(streamers)
+    evaluation = evaluacion(prueba2)
+
+    streamers = recomendaciones(evaluation)
+
+    print("RECOMENDACIONES")
+    print(streamers)
+
+    #lista_baneados = ban_list(streamers)
+
+    #print("Listas de baneados")
+    #print(lista_baneados)
+if __name__ == "__main__":
+    main()

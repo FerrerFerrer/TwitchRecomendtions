@@ -13,15 +13,14 @@ HEADS = {
     #"Authorization" : "OAuth 17qyf4koyvfdqjs4me7zr451lccmtn"
 }
 
-nombre = "albertto1198"
-nombre = "m60_"
+nombre = "pokimane"
 URL = "https://api.twitch.tv/kraken/users?login={}".format(nombre)
 r = requests.get(url = URL, headers = HEADS)
 
 temp = r.json()
 try:
     id = temp["users"][0]["_id"]
-
+    print(id)
     t = client.get_user_follows(from_id = id)
 
     for i in t:

@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 class AbstactClassApi(ABC):
-    def __init__(self, client_id, oauth_token, accept = "application/vnd.twitchtv.v5+json"):
+    def __init__(self, client_id = 'vnsbdjciw4fcif1k57w1c07a65wk03', oauth_token = 'oauth:17qyf4koyvfdqjs4me7zr451lccmtn', accept = "application/vnd.twitchtv.v5+json"):
         super().__init__()
         self.client_id = client_id
         self.oauth_token = oauth_token
