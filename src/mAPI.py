@@ -19,3 +19,7 @@ class mockAPI(AbstactClassApi):
         def get_followe(self, name_or_id):
             l = ["z", "x", "l", "p", "i"]
             return l
+
+working = mockAPI("jhbdfj", "djfk")
+x = working.get_name("DJFID")
+print(x)

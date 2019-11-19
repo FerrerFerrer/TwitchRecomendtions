@@ -8,13 +8,13 @@ def ponderByFollowers(channel):
     #sigue = len(api.get_followe())
 
     #folowers       : mult
-    #0      -   100: 1.0
-    #101    -  1000: 1.5
-    #1001   -  5000: 1.8
-    #5001   - 10000: 2.0
-    #10000  - 50000: 3.0
-    #50001  - 90000: 4.0
-    #900001+       : 5.0
+    #0      -   100: 10.0
+    #101    -  1000: 15.0
+    #1001   -  5000: 18.0
+    #5001   - 10000: 20.0
+    #10000  - 50000: 30.0
+    #50001  - 90000: 40.0
+    #900001+       : 50.0
 
     #return mult/following
     #return multi / len(api.get_followers())
