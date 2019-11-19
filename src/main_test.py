@@ -37,27 +37,38 @@ class TestMain(unittest.TestCase):
 
     @mock.patch('main.input')
     @mock.patch('main.getOptions')
-    def test_takeAction(self, mock_input, mock_options):
+    def test_takeAction(self, mock_options, mock_input):
         B = "Out of bounds!\n"
         N = "Please only numbers!\n"
-        E = "\nTo many errors!\nHere are the options again:\n"
+        E = "\nTo many errors!\nHere are the options again:\n\n"
 
         entrada = [["4"], ["0"], ["7"], ["-1", "10", "8", "10000", "-10000", "5"], [" ", "one", "zero", "u8", "8o", "@", "", "2"]]
         salida_esperada = [4, 0, 7, 5, 2]
-        print_esperado = [[], [], [], [B, B, B, E, B, B, E], [N, N, N, E, N, N, N, E, N]]
+        print_esperado = [[], [], [], [B, B, B, E, B, B], [N, N, N, E, N, N, N, E, N]]
 
         for r in range(len(entrada)):
-            mock_input.return_value = 4
             with self.subTest(r=r):
-                ## FIXME: Not working
-                #mock_input.side_effect = entrada[r]
+                mock_input.reset_mock
+                mock_options.reset_mock
 
+                #Variables cuanticas
+                lo = mock_options.call_count
+                la = mock_input.call_count
 
+                le = la is 1 or la is 0
+                self.assertEqual(lo, 0)
+                self.assertTrue(le)
+                self.assertEqual(la, 0)
+
+                mock_input.side_effect = entrada[r]
+                mock_options.return_value = ""
 
                 capturedOutput = io.StringIO()                # Create StringIO object
                 sys.stdout = capturedOutput                   #  and redirect stdout.
 
+                mock_input.reset_mock
                 salida_actual = main.takeAction()
+                la = mock_input.call_count
 
                 sys.stdout = sys.__stdout__                   # Reset redirect.
                 printed = capturedOutput.getvalue()
@@ -74,7 +85,8 @@ class TestMain(unittest.TestCase):
                 self.assertEqual(printed, print_esperado_completo)
                 self.assertEqual(mock_options.call_count, called_options)
                 self.assertEqual(mock_input.call_count, len(entrada[r]))
-
+                mock_input.reset_mock
+                mock_options.reset_mock
 
 
     def test_doAction(self):

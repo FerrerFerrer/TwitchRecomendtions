@@ -43,7 +43,6 @@ def takeAction():
             #c = input("> ")
             c = int(input("> "))
             #DEBUG.append(c)
-            c = int(c)
             if c <= -1 or c >= 8:
                 print("Out of bounds!")
                 c = -1
