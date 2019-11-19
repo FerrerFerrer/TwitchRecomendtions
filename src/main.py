@@ -82,11 +82,14 @@ def doAction(comand):
     else:
         print("How did you got here? o.O")
 
-def main():
+def main(deb):
     print(getOptions())
-    while(True):
+    loop = True
+    while(loop):
         com = takeAction()
         doAction(com)
+        if deb:
+            loop = False
 
 if __name__ == '__main__':
-    main()
+    main(False)

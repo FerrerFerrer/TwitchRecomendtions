@@ -48,17 +48,16 @@ class TestMain(unittest.TestCase):
 
         for r in range(len(entrada)):
             with self.subTest(r=r):
-                mock_input.reset_mock
-                mock_options.reset_mock
+                mock_input.call_count = 0
+                mock_options.call_count = 0
 
                 #Variables cuanticas
-                lo = mock_options.call_count
-                la = mock_input.call_count
-
-                le = la is 1 or la is 0
-                self.assertEqual(lo, 0)
-                self.assertTrue(le)
-                self.assertEqual(la, 0)
+                # lo = mock_options.call_count
+                # la = mock_input.call_count
+                # le = la is 1 or la is 0
+                # self.assertEqual(lo, 0)
+                # self.assertTrue(le)
+                # self.assertEqual(la, 0)
 
                 mock_input.side_effect = entrada[r]
                 mock_options.return_value = ""
@@ -66,9 +65,7 @@ class TestMain(unittest.TestCase):
                 capturedOutput = io.StringIO()                # Create StringIO object
                 sys.stdout = capturedOutput                   #  and redirect stdout.
 
-                mock_input.reset_mock
                 salida_actual = main.takeAction()
-                la = mock_input.call_count
 
                 sys.stdout = sys.__stdout__                   # Reset redirect.
                 printed = capturedOutput.getvalue()
@@ -83,17 +80,79 @@ class TestMain(unittest.TestCase):
 
                 self.assertEqual(salida_actual, salida_esperada[r])
                 self.assertEqual(printed, print_esperado_completo)
+
+                #Ignore this for now becouse they are cuantic
+                #Fixed! :D
                 self.assertEqual(mock_options.call_count, called_options)
                 self.assertEqual(mock_input.call_count, len(entrada[r]))
-                mock_input.reset_mock
-                mock_options.reset_mock
 
+    @mock.patch('main.coneccion_bd')
+    @mock.patch('main.getChannel')
+    @mock.patch('main.workingbolt')
+    @mock.patch('main.sys')
+    def test_doAction_calls(self, mock_sys, mock_bolt, mock_chanel, mock_bd):
+        #Input = 0
+        capturedOutput = io.StringIO()                # Create StringIO object
+        sys.stdout = capturedOutput                   #  and redirect stdout.
 
-    def test_doAction(self):
-        pass
+        main.doAction(0)
 
-    def test_main(self):
-        pass
+        sys.stdout = sys.__stdout__                   # Reset redirect.
+        printed = capturedOutput.getvalue()
+
+        self.assertEqual(printed, "Goodbye!\n")
+        self.assertEqual(mock_sys.exit.call_count, 1)
+
+        #Input = 1
+        main.doAction(1)
+        self.assertEqual(mock_bd.get_list.call_count, 1)
+
+        #Input = 2
+        main.doAction(2)
+        self.assertEqual(mock_bd.save_list.call_count, 1)
+
+        #Input = 3
+        main.doAction(3)
+        self.assertEqual(mock_chanel.call_count, 1)
+        self.assertEqual(mock_bolt.addChanel.call_count, 1)
+
+        mock_chanel.call_count = 0
+        #Input = 4
+        main.doAction(4)
+        self.assertEqual(mock_chanel.call_count, 1)
+        self.assertEqual(mock_bolt.removeChanel.call_count, 1)
+
+        mock_chanel.call_count = 0
+        #Input = 5
+        main.doAction(5)
+        self.assertEqual(mock_chanel.call_count, 1)
+        self.assertEqual(mock_bolt.blockChanel.call_count, 1)
+
+        #Input = 6
+        main.doAction(6)
+        self.assertEqual(mock_bolt.calculate.call_count, 1)
+
+        #Input = 7
+        main.doAction(7)
+        self.assertEqual(mock_bolt.printRecomendations.call_count, 1)
+
+    @mock.patch('main.getOptions')
+    @mock.patch('main.takeAction')
+    @mock.patch('main.doAction')
+    def test_main(self, mock_action, mock_take, mock_options):
+        for r in range(8):
+            with self.subTest(r=r):
+                mock_take.return_value = r
+                mock_options.call_count = 0
+                mock_options.return_value = ""
+
+                #Clean output
+                capturedOutput = io.StringIO()                # Create StringIO object
+                sys.stdout = capturedOutput                   #  and redirect stdout.
+
+                main.main(True)
+                mock_action.assert_called_with(r)
+                self.assertTrue(mock_options.call_count, 1)
 
 
 if __name__ == '__main__':
