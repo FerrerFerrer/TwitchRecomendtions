@@ -45,7 +45,37 @@ class TestMain(unittest.TestCase):
         entrada = [["4"], ["0"], ["7"], ["-1", "10", "8", "10000", "-10000", "5"], [" ", "one", "zero", "u8", "8o", "@", "", "2"]]
         salida_esperada = [4, 0, 7, 5, 2]
         print_esperado = [[], [], [], [B, B, B, E, B, B, E], [N, N, N, E, N, N, N, E, N]]
-        
+
+        for r in range(len(entrada)):
+            mock_input.return_value = 4
+            with self.subTest(r=r):
+                ## FIXME: Not working
+                #mock_input.side_effect = entrada[r]
+
+
+
+                capturedOutput = io.StringIO()                # Create StringIO object
+                sys.stdout = capturedOutput                   #  and redirect stdout.
+
+                salida_actual = main.takeAction()
+
+                sys.stdout = sys.__stdout__                   # Reset redirect.
+                printed = capturedOutput.getvalue()
+
+                print_esperado_completo = ""
+                called_options = 0
+                pr_esperado = print_esperado[r]
+                for i in pr_esperado:
+                    if i is E:
+                        called_options += 1
+                    print_esperado_completo += i
+
+                self.assertEqual(salida_actual, salida_esperada[r])
+                self.assertEqual(printed, print_esperado_completo)
+                self.assertEqual(mock_options.call_count, called_options)
+                self.assertEqual(mock_input.call_count, len(entrada[r]))
+
+
 
     def test_doAction(self):
         pass

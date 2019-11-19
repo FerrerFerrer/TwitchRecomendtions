@@ -33,7 +33,6 @@ def getChannel():
 def takeAction():
     errors = 0
     ret = -1
-
     while(ret is -1):
         if errors is 3:
             print("\nTo many errors!\nHere are the options again:")
@@ -41,7 +40,10 @@ def takeAction():
             errors = 0
 
         try:
+            #c = input("> ")
             c = int(input("> "))
+            #DEBUG.append(c)
+            c = int(c)
             if c <= -1 or c >= 8:
                 print("Out of bounds!")
                 c = -1
