@@ -12,7 +12,7 @@ AVOID_BLOCKED = True #Avoid blocked channels to recomendations (blocked and doub
 DEBUG = True #If true, then print debug information to console
 
 coneccion_bd = mockBD("123")
-workingbolt = mockBolt()
+workingbolt = mockBolt("api", "bd")
 
 def getOptions():
     return """

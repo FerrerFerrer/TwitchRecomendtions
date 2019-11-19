@@ -2,10 +2,9 @@ from abs.absBolt import AbstactBolt
 from classes import channel
 
 class mockBolt(AbstactBolt):
-        def __init__(self, api, bd):
-            super().__init__()
+        def __init__(self, api, basedatos):
+            super().__init__(basedatos)
             self.api = api
-            self.bd = bd
 
         def addChanel(self, name):
             self.ls_channel.append(name)
@@ -31,4 +30,10 @@ class mockBolt(AbstactBolt):
             print("This are your recomendations!")
 
         def get_index_in_list(self, name):
-            for
+            pass
+
+        def get_session(self):
+            pass
+
+        def save_session(self):
+            pass

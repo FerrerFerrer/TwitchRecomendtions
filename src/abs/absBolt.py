@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
-class AbstactBolt(ABC, basedatos):
-    def __init__(self):
+class AbstactBolt(ABC):
+    def __init__(self, basedatos):
         super().__init__()
         self.ls_channel = []
         self.bd = basedatos
