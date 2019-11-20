@@ -5,6 +5,7 @@ sys.path.append('imp')
 
 from imp.mBolt import mockBolt
 from imp.mBD import mockBD
+from imp.APIfuncional import apiTwitch
 
 #Global setting variables
 MOTHER_PATH = "saves\{}.txt"    #Static path name to save options for later
@@ -14,7 +15,7 @@ LIMIT_RECOMENDATIONS = 5        #How many channels its going to calculate; -1 fo
 AVOID_BLOCKED = True            #Avoid blocked channels to recomendations (blocked and double recomendations)
 DEBUG = True                    #If true, then print debug information to console
 
-
+workingapi = apiTwitch()
 coneccion_bd = mockBD("123")
 workingbolt = mockBolt("api", "bd")
 

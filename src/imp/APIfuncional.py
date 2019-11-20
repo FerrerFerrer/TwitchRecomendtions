@@ -1,4 +1,4 @@
-from .abs.absAPI import AbstactClassApi
+from abs.absAPI import AbstactClassApi
 import twitch
 from twitch import TwitchClient, TwitchHelix
 import requests
@@ -36,6 +36,7 @@ class apiTwitch(AbstactClassApi):
         cantidad = seguidoresStreamer["followers"]
         return cantidad
 
-workingapi = apiTwitch()
-prueba1 = workingapi.get_userid("albertto1198")
-print(prueba1)
+if __name__ == '__main__':
+    workingapi = apiTwitch()
+    prueba1 = workingapi.get_userid("albertto1198")
+    print(prueba1)
