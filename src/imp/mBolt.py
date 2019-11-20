@@ -11,33 +11,43 @@ class mockBolt(AbstactBolt):
             self.api = api
             self.ls_recomendated = []
 
+            def get_index_in_list(self, id_name, nameB, ls):
+                for r in range(len(ls)):
+                    ls_in = ""
+                    if(nameB):
+                        ls_in = ls[r].name
+                    else:
+                        ls_in = ls[r].id
+
+                    if ls_in is id_name:
+                        return r
+
+                return -1
+
         def addChanel(self, name):
-            self.ls_channel.append(name)
-            print("Adding...", name)
+            id = api.get_userid(name)
+            temp = Channel(id = id, name = name)
+            self.ls_channel.append(temp)
 
         def removeChanel(self, name):
-            self.ls_channel.remove(name)
-            print("Removing...", name)
+            idx = get_index_in_list(name, True, self.ls_channel)
+            if idx is not -1:
+                self.ls_channel.pop(idx)
+            else:
+                print("ERROR: Couldn´t find that channel in the list")
 
         def blockChanel(self, name):
-            for x in self.ls_channel:
-                t = x.name
-                if t is name:
-                    x.block(True)
-                    return
+            idx = get_index_in_list(name, True, self.ls_channel)
+            if idx is not -1:
+                self.ls_channel[idx].block(True)
+            else:
+                print("ERROR: Couldn´t find that channel in the list")
 
         def calculate(self):
             print("Calculating")
 
         def printRecomendations(self):
             print("This are your recomendations!")
-
-        def get_index_in_list(self, id, ls):
-            for r in range(len(ls)):
-                ls_in = ls[r].id
-                if ls_in is id:
-                    return r
-            return -1
 
         def get_session(self):
             pass
@@ -69,19 +79,32 @@ class mockBolt(AbstactBolt):
         def ponderByUnionOfChannels(self):
             self.ls_recomendated = []           #Reseting list...
             for channel in channels:
-                ## FIXME:
-                #multiplyer = ponderByFollowers(channel)
-                #multiplyer = len()
-                multiplyer = random.random() + 1
-                for subchannel in channel: #channel.getFollowers():
-                    if subchannel in rep.keys():
-                        rep[subchannel] += multiplyer
-                    else:
-                        rep[subchannel] = multiplyer
+                if channel.blocked is True:
+                    continue
+                num_fol = api.get_followe(channel.id)
+                mult = ponderByFollowers(num_fol)
+                subs = api.get_followers(channel.id)
+                mult = mult / len(subs)
 
-            ls = [ [k,v] for k, v in rep.items() ]
-            ls = sorted(ls, key = lambda x: x[1], reverse = True)
-            return ls[:10]
+                for subchannel in subs: #channel.getFollowers():
+
+                    #Existe como un usuario que ya sigue?
+                    idx_temp = get_index_in_list(idx, False, self.ls_channel)
+                    if idx_temp is not -1:
+                        #Ya existe
+                        continue
+                    else:
+                        #No existe
+
+                        #Existe como ya recomendado?
+                        idx = get_index_in_list(subchannel, False, self.ls_recomendated)
+                        if idx is -1:
+                            #No existe
+                            temp_channel = Channel(id = subchannel, name = api.get_name(subchannel), ponderation = mult)
+                            self.ls_recomendated.append(temp_channel)
+                        else:
+                            #Ya existe
+                            self.ls_recomendated[idx].addPonderation(mult)
 
 
 if __name__ == '__main__':
