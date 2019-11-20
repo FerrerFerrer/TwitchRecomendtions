@@ -20,7 +20,7 @@ class apiTwitch(AbstactClassApi):
 
     def get_followers(self, id_cliente):
         namefollows = []
-        t = self.helix.get_user_follows(from_id = id)
+        t = self.helix.get_user_follows(from_id = id_cliente)
         namefollows = []
         for i in t:
             namefollows.append(i["to_id"])
@@ -28,15 +28,17 @@ class apiTwitch(AbstactClassApi):
         return namefollows
 
     def get_name(self, id_streamer):
-       pass
+       self.id_streamer = id_streamer
+       channel = self.client.channels.get_by_id(self.id_streamer)
+       nombre_streamer = channel.name
+       return nombre_streamer
 
     def get_followe(self, id_streamer):
-        self.id_streamer = id_streamer
         seguidoresStreamer = self.client.channels.get_by_id(id_streamer)
         cantidad = seguidoresStreamer["followers"]
         return cantidad
 
 if __name__ == '__main__':
     workingapi = apiTwitch()
-    prueba1 = workingapi.get_userid("albertto1198")
+    prueba1 = workingapi.get_followe(42999001)
     print(prueba1)
