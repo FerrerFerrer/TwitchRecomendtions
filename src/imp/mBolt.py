@@ -11,18 +11,18 @@ class mockBolt(AbstactBolt):
             self.api = api
             self.ls_recomendated = []
 
-            def get_index_in_list(self, id_name, nameB, ls):
-                for r in range(len(ls)):
-                    ls_in = ""
-                    if(nameB):
-                        ls_in = ls[r].name
-                    else:
-                        ls_in = ls[r].id
+        def get_index_in_list(self, id_name, nameB, ls):
+            for r in range(len(ls)):
+                ls_in = ""
+                if(nameB):
+                    ls_in = ls[r].name
+                else:
+                    ls_in = ls[r].id
 
-                    if ls_in is id_name:
-                        return r
+                if ls_in is id_name:
+                    return r
 
-                return -1
+            return -1
 
         def addChanel(self, name):
             id = api.get_userid(name)
