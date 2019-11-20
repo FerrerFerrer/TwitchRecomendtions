@@ -1,5 +1,6 @@
 from .abs.absBolt import AbstactBolt
-from classes import channel
+from channel import Channel
+
 
 class mockBolt(AbstactBolt):
         def __init__(self, api, basedatos):
@@ -63,7 +64,7 @@ class mockBolt(AbstactBolt):
                 return 70.0
 
         def ponderByUnionOfChannels(self):
-            rep = {}
+            self.ls_recomendated = []           #Reseting list...
             for channel in channels:
                 ## FIXME:
                 #multiplyer = ponderByFollowers(channel)

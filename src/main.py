@@ -1,5 +1,8 @@
 #Main program - User Interface
 import sys
+sys.path.append('classes')
+sys.path.append('imp')
+
 from imp.mBolt import mockBolt
 from imp.mBD import mockBD
 
