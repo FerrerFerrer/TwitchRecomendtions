@@ -1,4 +1,4 @@
-from absAPI import AbstactClassApi
+from .abs.absAPI import AbstactClassApi
 import twitch
 from twitch import TwitchClient, TwitchHelix
 import requests
@@ -17,16 +17,16 @@ class apiTwitch(AbstactClassApi):
         id_usuario = temp["users"][0]["_id"]
         #############################################################
         return id_usuario
-    
+
     def get_followers(self, id_cliente):
         namefollows = []
         t = self.helix.get_user_follows(from_id = id)
         namefollows = []
         for i in t:
-            namefollows.append(i["to_name"])
+            namefollows.append(i["to_id"])
         #print(namefollows)
         return namefollows
-    
+
     def get_name(self, id_streamer):
        pass
 
@@ -36,6 +36,6 @@ class apiTwitch(AbstactClassApi):
         cantidad = seguidoresStreamer["followers"]
         return cantidad
 
-workingapi = apiTwitch()   
+workingapi = apiTwitch()
 prueba1 = workingapi.get_userid("albertto1198")
 print(prueba1)
