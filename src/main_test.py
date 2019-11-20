@@ -17,22 +17,27 @@ class TestMain(unittest.TestCase):
 
     @mock.patch('main.input')
     def test_getChannel(self, mock_open):
-        salidas = ["Clase 1", "Ninja", "Ninga", "", " ", ".", "-12345667"]
+        entrada = ["Clase 1", "Ninja", "Ninga", "", " ", ".", "-12345667", "CarlosTrejo2308"]
+        salida = [-1, "Ninja", "Ninga", -1, -1, -1, -1, "CarlosTrejo2308"]
 
-        for r in range(len(salidas)):
+
+        for r in range(len(entrada)):
             with self.subTest(r=r):
                 capturedOutput = io.StringIO()                # Create StringIO object
                 sys.stdout = capturedOutput                   #  and redirect stdout.
-                obj = salidas[r]
+                obj = entrada[r]
                 mock_open.return_value = obj
 
                 salida_actual = main.getChannel()
                 sys.stdout = sys.__stdout__                   # Reset redirect.
                 printed = capturedOutput.getvalue()
-                salida_esperada = obj
+                salida_esperada = salida[r]
 
                 self.assertEqual(salida_actual, salida_esperada)
-                self.assertEqual(printed, "Enter name of channel: \n")
+                if salida[r] is -1:
+                    self.assertEqual(printed, "Enter name of channel: \nHay un problema con este canal, o no hay internet\n")
+                else:
+                    self.assertEqual(printed, "Enter name of channel: \n")
                 mock_open.assert_called_with(">> ")
 
     @mock.patch('main.input')
