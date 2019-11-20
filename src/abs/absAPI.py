@@ -20,10 +20,10 @@ class AbstactClassApi(ABC):
     def get_followers(self, name_or_id):
         pass
 
-    @abstractmethod
-    def get_name(self, id):
-        pass
-
+    #@abstractmethod
+    #def get_name(self, id):
+    #    pass
+#
     #Who follows him - should work both with id's and name
     @abstractmethod
     def get_followe(self, name_or_id):
