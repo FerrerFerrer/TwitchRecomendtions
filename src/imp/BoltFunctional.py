@@ -3,6 +3,7 @@ from abs.absBolt import AbstactBolt
 import sys
 sys.path.append('../classes')
 from channel import Channel
+from tqdm import tqdm
 
 DEBUG = False
 
@@ -15,6 +16,9 @@ class Bolt(AbstactBolt):
         def printChannel(self, ls):
             for x in ls:
                 print(x.toString())
+
+        def viewChannels(self):
+            self.printChannel(self.ls_channel)
 
         def get_index_in_list(self, id_name, nameB, ls):
             if(DEBUG):
@@ -42,43 +46,56 @@ class Bolt(AbstactBolt):
             return -1
 
         def addChanel(self, name):
-            id = self.api.get_userid(name)
-            temp = Channel(id = id, name = name)
-            self.ls_channel.append(temp)
-            self.printChannel(self.ls_channel)
+            try:
+                id = self.api.get_userid(name)
+                temp = Channel(id = id, name = name)
+                self.ls_channel.append(temp)
+                print("El canal se agrego correctamente")
+            except:
+                print("Hubo un error agregando el canal")
+            if(DEBUG):
+                self.printChannel(self.ls_channel)
 
         def removeChanel(self, name):
-            idx = self.get_index_in_list(name, True, self.ls_channel)
-            if idx is not -1:
-                self.ls_channel.pop(idx)
-            else:
-                print("ERROR: Couldn´t find that channel in the list")
-            self.printChannel(self.ls_channel)
+            try:
+                idx = self.get_index_in_list(name, True, self.ls_channel)
+                if idx is not -1:
+                    self.ls_channel.pop(idx)
+                    print("Se elimino correctamente")
+                else:
+                    print("ERROR: Couldn´t find that channel in the list")
+            except:
+                print("Hubo un error eliminando el canal")
+            if(DEBUG):
+                self.printChannel(self.ls_channel)
 
         def blockChanel(self, name):
-            idx = self.get_index_in_list(name, True, self.ls_channel)
-            if idx is not -1:
-                self.ls_channel[idx].block(True)
-            else:
-                print("ERROR: Couldn´t find that channel in the list")
-            self.printChannel(self.ls_channel)
-
-        def calculate(self):
-            print("Calculating")
+            try:
+                idx = self.get_index_in_list(name, True, self.ls_channel)
+                if idx is not -1:
+                    self.ls_channel[idx].block(True)
+                    print("Se bloqueo correctamente")
+                else:
+                    print("ERROR: Couldn´t find that channel in the list")
+            except:
+                print("Hubo un error el bloquear el canal")
+            if(DEBUG):
+                self.printChannel(self.ls_channel)
 
         def printRecomendations(self):
-            print("This are your recomendations!")
+            print("Esta es la lista completa")
+            self.printChannel(self.ls_recomendated)
 
         def get_session(self):
-            pass
+            print("Coming soon...")
 
         def save_session(self):
-            pass
+            print("Coming soon...")
 
         ####################
         ##  Ponderations  ##
         ####################
-        def ponderByFollowers(number):
+        def ponderByFollowers(self, number):
             if number < 100:
                 return 10.0
             elif number < 1000:
@@ -98,18 +115,17 @@ class Bolt(AbstactBolt):
 
         def ponderByUnionOfChannels(self):
             self.ls_recomendated = []           #Reseting list...
-            for channel in channels:
+            for channel in tqdm(self.ls_channel):
                 if channel.blocked is True:
                     continue
                 num_fol = self.api.get_followe(channel.id)
-                mult = ponderByFollowers(num_fol)
+                mult = self.ponderByFollowers(num_fol)
                 subs = self.api.get_followers(channel.id)
                 mult = mult / len(subs)
 
-                for subchannel in subs: #channel.getFollowers():
-
+                for subchannel in tqdm(subs):
                     #Existe como un usuario que ya sigue?
-                    idx_temp = self.get_index_in_list(idx, False, self.ls_channel)
+                    idx_temp = self.get_index_in_list(subchannel, False, self.ls_channel)
                     if idx_temp is not -1:
                         #Ya existe
                         continue
@@ -120,11 +136,18 @@ class Bolt(AbstactBolt):
                         idx = self.get_index_in_list(subchannel, False, self.ls_recomendated)
                         if idx is -1:
                             #No existe
-                            temp_channel = Channel(id = subchannel, name = self.api.get_name(subchannel), ponderation = mult)
-                            self.ls_recomendated.append(temp_channel)
+                            try:
+                                temp_channel = Channel(id = subchannel, name = self.api.get_name(subchannel), ponderation = mult)
+                                self.ls_recomendated.append(temp_channel)
+                            except:
+                                print("ERROR", subchannel)
                         else:
                             #Ya existe
                             self.ls_recomendated[idx].addPonderation(mult)
+
+        def calculate(self):
+            self.ponderByUnionOfChannels()
+            print("Calculo terminado")
 
 if __name__ == '__main__':
     bo = mockBolt("api", "bd")

@@ -28,6 +28,7 @@ def getOptions():
     5. Block channel
     6. Calculate
     7. Get Recomendations
+    8. View Channels
     0. Quit"""
 
 def getChannel():
@@ -48,7 +49,7 @@ def takeAction():
             #c = input("> ")
             c = int(input("> "))
             #DEBUG.append(c)
-            if c <= -1 or c >= 8:
+            if c <= -1 or c >= 9:
                 print("Out of bounds!")
                 c = -1
             ret = c
@@ -83,6 +84,9 @@ def doAction(comand):
 
     elif comand is 7:
         workingbolt.printRecomendations()
+
+    elif comand is 8:
+        workingbolt.viewChannels()
 
     else:
         print("How did you got here? o.O")

@@ -10,7 +10,7 @@ import mock
 class TestMain(unittest.TestCase):
 
     def test_getOptions(self):
-        salida_esperada = "\n    1. Load Options\n    2. Save Options\n    3. Add channel\n    4. Remove channel\n    5. Block channel\n    6. Calculate\n    7. Get Recomendations\n    0. Quit"
+        salida_esperada = "\n    1. Load Options\n    2. Save Options\n    3. Add channel\n    4. Remove channel\n    5. Block channel\n    6. Calculate\n    7. Get Recomendations\n    8. View Channels\n    0. Quit"
         salida_actual = main.getOptions()
 
         self.assertEqual(salida_actual, salida_esperada)
@@ -42,8 +42,8 @@ class TestMain(unittest.TestCase):
         N = "Please only numbers!\n"
         E = "\nTo many errors!\nHere are the options again:\n\n"
 
-        entrada = [["4"], ["0"], ["7"], ["-1", "10", "8", "10000", "-10000", "5"], [" ", "one", "zero", "u8", "8o", "@", "", "2"]]
-        salida_esperada = [4, 0, 7, 5, 2]
+        entrada = [["4"], ["0"], ["8"], ["-1", "10", "9", "10000", "-10000", "5"], [" ", "one", "zero", "u8", "8o", "@", "", "2"]]
+        salida_esperada = [4, 0, 8, 5, 2]
         print_esperado = [[], [], [], [B, B, B, E, B, B], [N, N, N, E, N, N, N, E, N]]
 
         for r in range(len(entrada)):
@@ -135,6 +135,11 @@ class TestMain(unittest.TestCase):
         #Input = 7
         main.doAction(7)
         self.assertEqual(mock_bolt.printRecomendations.call_count, 1)
+
+        #Input = 8
+        main.doAction(8)
+        self.assertEqual(mock_bolt.viewChannels.call_count, 1)
+
 
     @mock.patch('main.getOptions')
     @mock.patch('main.takeAction')

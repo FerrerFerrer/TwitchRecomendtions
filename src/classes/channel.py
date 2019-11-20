@@ -7,20 +7,20 @@ class Channel:
         self.name = name
 
     def addPonderation(self, num):
-        if(not blocked):
-            self.ponderation += num
+        if(not self.blocked):
+            self._ponderation += num
         else:
             return -1
 
     def multiplyPonderation(self, num):
-        if(not blocked):
-            self.ponderation *= num
+        if(not self.blocked):
+            self._ponderation *= num
         else:
             return -1
 
     def resetPonderation(self):
-        if(not blocked):
-            self.ponderation = 0
+        if(not self.blocked):
+            self._ponderation = 0
         else:
             return -1
 
@@ -40,7 +40,7 @@ class Channel:
         self.blocked = b
 
         if self.blocked:
-            self.ponderation = -9999999
+            self._ponderation = -9999999
         else:
             self.resetPonderation()
 
