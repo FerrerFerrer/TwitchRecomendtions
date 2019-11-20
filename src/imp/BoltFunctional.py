@@ -84,7 +84,8 @@ class Bolt(AbstactBolt):
 
         def printRecomendations(self):
             print("Esta es la lista completa")
-            self.printChannel(self.ls_recomendated)
+            self.ls_recomendated.sort(key=lambda x: x._ponderation, reverse=True)
+            self.printChannel(self.ls_recomendated[:10])
 
         def get_session(self):
             print("Coming soon...")
