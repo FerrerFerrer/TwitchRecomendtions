@@ -6,40 +6,43 @@ class Channel:
         self.blocked = False
         self.name = name
 
-    def addPonderation(num):
+    def addPonderation(self, num):
         if(not blocked):
             self.ponderation += num
         else:
             return -1
 
-    def multiplyPonderation(num):
+    def multiplyPonderation(self, num):
         if(not blocked):
             self.ponderation *= num
         else:
             return -1
 
-    def resetPonderation():
+    def resetPonderation(self):
         if(not blocked):
             self.ponderation = 0
         else:
             return -1
 
-    def changeId(id):
+    def changeId(self, id):
         self.id = id
 
-    def addFollower(channel):
+    def addFollower(self, channel):
         self.followers.append(channel)
 
-    def removeFollower(channel):
+    def removeFollower(self, channel):
         self.followers.remove(channel)
 
-    def getFollowers():
+    def getFollowers(self):
             return self.followers
 
-    def block(b):
+    def block(self, b):
         self.blocked = b
 
         if self.blocked:
             self.ponderation = -9999999
         else:
             self.resetPonderation()
+
+    def toString(self):
+        return ("name: ", self.name, " id: ", self.id, " ponderation: ", self._ponderation, " blocked: ", self.blocked)

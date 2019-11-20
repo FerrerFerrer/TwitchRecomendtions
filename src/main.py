@@ -3,7 +3,7 @@ import sys
 sys.path.append('classes')
 sys.path.append('imp')
 
-from imp.mBolt import mockBolt
+from imp.BoltFunctional import Bolt
 from imp.mBD import mockBD
 from imp.APIfuncional import apiTwitch
 
@@ -17,7 +17,7 @@ DEBUG = True                    #If true, then print debug information to consol
 
 workingapi = apiTwitch()
 coneccion_bd = mockBD("123")
-workingbolt = mockBolt("api", "bd")
+workingbolt = Bolt(workingapi, coneccion_bd)
 
 def getOptions():
     return """
