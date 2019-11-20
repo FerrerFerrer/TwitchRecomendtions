@@ -1,22 +1,20 @@
 import unittest
 from unittest.mock import Mock, patch
+from unittest import mock
 import twitch
 from twitch import TwitchClient, TwitchHelix
 import requests
 from APIfuncional import apiTwitch
-
 class TestApi(unittest.TestCase):
-    
     def test_get_userid(self):
         prueba = apiTwitch()
         resultados = ["118237854", "31478096", "46719113"]
         nombres = ["albertto1198", "mym_alkapone", "gorilanerd"]
-
         for i in range(len(resultados)):
-            salida_actual = resultados[i]
-            salida_esperada = prueba.get_userid(nombres[i])
+            salida_esperada = resultados[i]
+            salida_actual = prueba.get_userid(nombres[i])
             self.assertAlmostEqual(salida_actual, salida_esperada)
-    
+
     def test_get_followers(self):
         prueba = apiTwitch()
         salidas = [['97322738', '118974117', '233992790', '49656095', '158434891', '64582762', '28344564', '31894912', '42999001', '19106200', '31478096', '46719113', '80987594'],
@@ -65,7 +63,6 @@ class TestApi(unittest.TestCase):
             salida_esperada = salida
             self.assertAlmostEqual(salida_actual, salida_esperada)
 
-
     def test_get_name(self):
         prueba = apiTwitch()
         resultados = ["albertto1198", "keriosriven", "ag_bean3r"]
@@ -76,10 +73,11 @@ class TestApi(unittest.TestCase):
             salida_esperada = salida
             self.assertAlmostEqual(salida_actual, salida_esperada)
 
+
     def test_get_followe(self):
         prueba = apiTwitch()
         lista_id = ["42999001", "97322738", "80987594"]
-        resultados = [334555, 17537, 36997]
+        resultados = [prueba.get_followe(42999001), prueba.get_followe(97322738), prueba.get_followe(80987594)]
 
         for l in range(len(lista_id)):
             salida = resultados[l]
