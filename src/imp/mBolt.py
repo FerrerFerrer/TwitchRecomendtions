@@ -1,4 +1,4 @@
-from abs.absBolt import AbstactBolt
+from .abs.absBolt import AbstactBolt
 from classes import channel
 
 class mockBolt(AbstactBolt):
@@ -30,7 +30,7 @@ class mockBolt(AbstactBolt):
 
         def get_index_in_list(self, name):
             idx = -1
-            for r in range(len())
+            #for r in range(len())
 
         def get_session(self):
             pass

@@ -1,7 +1,7 @@
 #Main program - User Interface
 import sys
-from mBD import mockBD
-from mBolt import mockBolt
+from imp.mBolt import mockBolt
+from imp.mBD import mockBD
 
 #Global setting variables
 MOTHER_PATH = "saves\{}.txt" #Static path name to save options for later

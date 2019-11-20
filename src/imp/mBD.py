@@ -1,4 +1,4 @@
-from abs.absDataBase import AbstactClassDB
+from .abs.absDataBase import AbstactClassDB
 
 class mockBD(AbstactClassDB):
         def __init__(self, conection):
