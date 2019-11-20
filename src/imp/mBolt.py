@@ -22,8 +22,6 @@ class mockBolt(AbstactBolt):
                     x.block(True)
                     return
 
-            print("Blocking...", channel)
-
         def calculate(self):
             print("Calculating")
 
@@ -31,7 +29,8 @@ class mockBolt(AbstactBolt):
             print("This are your recomendations!")
 
         def get_index_in_list(self, name):
-            pass
+            idx = -1
+            for r in range(len())
 
         def get_session(self):
             pass
