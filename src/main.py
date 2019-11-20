@@ -34,7 +34,12 @@ def getOptions():
 def getChannel():
     print("Enter name of channel: ")
     chan = input(">> ")
-    return chan
+    try:
+        workingapi.get_userid(chan)
+        return chan
+    except:
+        print("Hay un problema con este canal, o no hay internet")
+        return -1
 
 def takeAction():
     errors = 0
