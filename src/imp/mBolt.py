@@ -1,4 +1,7 @@
-from .abs.absBolt import AbstactBolt
+from abs.absBolt import AbstactBolt
+#Main program - User Interface
+import sys
+sys.path.append('../classes')
 from channel import Channel
 
 
@@ -79,3 +82,8 @@ class mockBolt(AbstactBolt):
             ls = [ [k,v] for k, v in rep.items() ]
             ls = sorted(ls, key = lambda x: x[1], reverse = True)
             return ls[:10]
+
+
+if __name__ == '__main__':
+    bo = mockBolt("api", "bd")
+    bo.calculate()
