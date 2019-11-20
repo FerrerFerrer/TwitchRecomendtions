@@ -28,9 +28,12 @@ class mockBolt(AbstactBolt):
         def printRecomendations(self):
             print("This are your recomendations!")
 
-        def get_index_in_list(self, name):
-            idx = -1
-            #for r in range(len())
+        def get_index_in_list(self, id, ls):
+            for r in range(len(ls)):
+                ls_in = ls[r].id
+                if ls_in is id:
+                    return r
+            return -1
 
         def get_session(self):
             pass
@@ -41,6 +44,24 @@ class mockBolt(AbstactBolt):
         ####################
         ##  Ponderations  ##
         ####################
+        def ponderByFollowers(number):
+            if number < 100:
+                return 10.0
+            elif number < 1000:
+                return 15.0
+            elif number < 5000:
+                return 18.0
+            elif number < 10000:
+                return 20.0
+            elif number < 50000:
+                return 30.0
+            elif number < 100000:
+                return 40.0
+            elif number < 1000000:
+                return 50.0
+            else:
+                return 70.0
+
         def ponderByUnionOfChannels(self):
             rep = {}
             for channel in channels:
