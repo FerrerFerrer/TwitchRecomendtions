@@ -91,10 +91,12 @@ class Bolt(AbstactBolt):
             self.ls_recomendated.sort(key=lambda x: x._ponderation, reverse=True)
             self.printChannel(self.ls_recomendated[:10])
 
-        def get_session(self):
+        def get_session(self,api):
+            self.api.mostrar_usuario()
             print("Coming soon...")
 
-        def save_session(self):
+        def save_session(self,api):
+            self.api.agregar_usuario(self.ls_channel)
             print("Coming soon...")
 
         ####################

@@ -5,9 +5,9 @@ class AbstactClassDB(ABC):
         super().__init__()
 
     @abstractmethod
-    def save_list(self, lisofchannels):
+    def save_list(self, lisofchannels, bool):
         pass
 
     @abstractmethod
-    def get_list(self):
+    def get_list(self, bool):
         pass

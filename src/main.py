@@ -6,6 +6,7 @@ sys.path.append('imp')
 from imp.BoltFunctional import Bolt
 from imp.mBD import mockBD
 from imp.APIfuncional import apiTwitch
+from imp.basedatos import basedatos
 
 #Global setting variables
 MOTHER_PATH = "saves\{}.txt"    #Static path name to save options for later
@@ -16,7 +17,7 @@ AVOID_BLOCKED = True            #Avoid blocked channels to recomendations (block
 DEBUG = True                    #If true, then print debug information to console
 
 workingapi = apiTwitch()
-coneccion_bd = mockBD("123")
+coneccion_bd = basedatos()
 workingbolt = Bolt(workingapi, coneccion_bd)
 
 def getOptions():
