@@ -47,6 +47,10 @@ class Bolt(AbstactBolt):
 
         def addChanel(self, name):
             try:
+                t = self.get_index_in_list(name, False, self.ls_channel)
+                if t is not -1:
+                    print("El canal ya esta agregado")
+                    return
                 id = self.api.get_userid(name)
                 temp = Channel(id = id, name = name)
                 self.ls_channel.append(temp)
@@ -149,6 +153,14 @@ class Bolt(AbstactBolt):
         def calculate(self):
             self.ponderByUnionOfChannels()
             print("Calculo terminado")
+
+        def getFromUser(self, name):
+                temp_f = self.api.get_followers(self.api.get_userid(name))
+                for te in tqdm(temp_f):
+                    try:
+                        self.addChanel(self.api.get_name(te))
+                    except:
+                        print("Occurio un error ", te)
 
 if __name__ == '__main__':
     bo = mockBolt("api", "bd")

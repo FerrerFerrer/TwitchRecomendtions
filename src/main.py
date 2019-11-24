@@ -29,6 +29,7 @@ def getOptions():
     6. Calculate
     7. Get Recomendations
     8. View Channels
+    9. Agregar por usuario
     0. Quit"""
 
 def getChannel():
@@ -54,7 +55,7 @@ def takeAction():
             #c = input("> ")
             c = int(input("> "))
             #DEBUG.append(c)
-            if c <= -1 or c >= 9:
+            if c <= -1 or c >= 10:
                 print("Out of bounds!")
                 c = -1
             ret = c
@@ -93,6 +94,9 @@ def doAction(comand):
     elif comand is 8:
         workingbolt.viewChannels()
 
+    elif comand is 9:
+        name = getChannel()
+        workingbolt.getFromUser(name)
     else:
         print("How did you got here? o.O")
 
