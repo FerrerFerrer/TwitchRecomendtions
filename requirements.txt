@@ -1,0 +1,4 @@
+twitch-python
+python-twitch-client
+tqdm
+requests
