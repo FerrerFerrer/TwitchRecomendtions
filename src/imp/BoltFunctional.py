@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from abs.absBolt import AbstactBolt
 #Main program - User Interface
 import sys

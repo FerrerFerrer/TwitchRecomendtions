@@ -3,10 +3,10 @@ import sys
 sys.path.append('classes')
 sys.path.append('imp')
 
-from imp.BoltFunctional import Bolt
-from imp.mBD import mockBD
-from imp.APIfuncional import apiTwitch
-from imp.basedatos import basedatos
+from BoltFunctional import Bolt
+from mBD import mockBD
+from APIfuncional import apiTwitch
+from basedatos import basedatos
 
 #Global setting variables
 MOTHER_PATH = "saves\{}.txt"    #Static path name to save options for later
