@@ -6,7 +6,7 @@ sys.path.append('src/imp/BoltFuncional.py')
 
 
 from src.main_test import TestMain
-from test import integracion
+from test.integracion import TestIntegration
 
 TestMain()
 TestIntegration()
