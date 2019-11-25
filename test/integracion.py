@@ -7,7 +7,7 @@ import io
 import sys
 
 class TestIntegration(unittest.TestCase):
-    self.lista = []
+    #self.lista = []
 
     #3, 4, 5, 8
     def bloque1(self):
