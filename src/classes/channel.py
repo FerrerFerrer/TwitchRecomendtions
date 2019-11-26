@@ -2,7 +2,7 @@ class Channel:
     def __init__(self, id, ponderation = 0, name = ""):
         self.id = id
         self._ponderation = ponderation
-        self.followers = []
+        #self.followers = [] #Not used in this implimentation
         self.blocked = False
         self.name = name
 
@@ -24,17 +24,18 @@ class Channel:
         else:
             return -1
 
-    def changeId(self, id):
-        self.id = id
+    # def changeId(self, id):
+    #     self.id = id
 
-    def addFollower(self, channel):
-        self.followers.append(channel)
-
-    def removeFollower(self, channel):
-        self.followers.remove(channel)
-
-    def getFollowers(self):
-            return self.followers
+    #Not used tho
+    # def addFollower(self, channel):
+    #     self.followers.append(channel)
+    #
+    # def removeFollower(self, channel):
+    #     self.followers.remove(channel)
+    #
+    # def getFollowers(self):
+    #         return self.followers
 
     def block(self, b):
         self.blocked = b
