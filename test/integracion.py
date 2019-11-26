@@ -1,13 +1,19 @@
+import sys
+sys.path.append('../src/')
+sys.path.append('../src/classes')
+sys.path.append('../src/imp')
+
 import main
 import unittest
+
 from unittest.mock import Mock
 from unittest.mock import patch
 from unittest import TestCase
 import io
-import sys
 
 class TestIntegration(unittest.TestCase):
-    #self.lista = []
+    global lista
+    lista = []
 
     #3, 4, 5, 8
     def bloque1(self):
