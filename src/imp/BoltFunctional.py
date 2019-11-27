@@ -155,6 +155,7 @@ class Bolt(AbstactBolt):
 
         def calculate(self):
             self.ponderByUnionOfChannels()
+            #print(self.ls_recomendated)
             print("Calculo terminado")
 
         def getFromUser(self, name):
