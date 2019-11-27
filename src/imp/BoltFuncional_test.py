@@ -54,9 +54,18 @@ class TestBolt(unittest.TestCase):
 
     def testRemoveChanel(self):
         self.testingBolt.ls_channel = self.channels[2:]
-        
 
+        for r in range(len(self.channels[2:0]) -1 , -1, -1):
+            with self.subTest(r=r):
+                nametor = self.channels[r].name
+                self.testingBolt.removeChanel(nametor)
+                self.channels.pop(r)
 
+                self.assertEqual(self.testingBolt.ls_channel, self.channels)
+
+    def testBlockChannel(self):
+        self.testingBolt.ls_channel = self.channels[2:]
+        pass
 
 if __name__ == '__main__':
     unittest.main()
