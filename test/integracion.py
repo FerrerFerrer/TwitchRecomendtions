@@ -48,8 +48,6 @@ Goodbye!"""
         sys.stdout = sys.__stdout__                   # Reset redirect.
         printed = capturedOutput.getvalue()
 
-        print(printed[-(len(printed_esperado)+11):])
-
 
         x = printed_esperado in printed
 
