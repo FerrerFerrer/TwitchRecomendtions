@@ -30,7 +30,7 @@ class TestIntegration(unittest.TestCase):
     coneccion_bd = basedatos()
     workingbolt = Bolt(workingapi, coneccion_bd)
 
-    def getOptions():
+    def test_getOptions():
         return """
         1. Load Options
         2. Save Options
@@ -43,7 +43,7 @@ class TestIntegration(unittest.TestCase):
         9. Agregar por usuario
         0. Quit"""
 
-    def getChannel():
+    def test_getChannel():
         print("Enter name of channel: ")
         chan = input(">> ")
         try:
@@ -53,7 +53,7 @@ class TestIntegration(unittest.TestCase):
             print("Hay un problema con este canal, o no hay internet")
             return -1
 
-    def takeAction():
+    def test_takeAction():
         errors = 0
         ret = -1
         while(ret is -1):
@@ -76,7 +76,7 @@ class TestIntegration(unittest.TestCase):
             errors += 1
         return c
 
-    def doAction(comand):
+    def test_doAction(comand):
         if comand is 0:
             print("Goodbye!")
             sys.exit()
