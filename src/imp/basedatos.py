@@ -10,7 +10,6 @@ class basedatos(AbstactClassDB):
 
 
     def save_list(self, lisofchannels, bool):
-
         pass
 
 

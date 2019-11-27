@@ -2,7 +2,6 @@
 import sys
 sys.path.append('classes')
 sys.path.append('imp')
-
 from BoltFunctional import Bolt
 from mBD import mockBD
 from APIfuncional import apiTwitch

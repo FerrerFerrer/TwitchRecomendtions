@@ -22,11 +22,12 @@ def canales_de_cliente(username):
     r = requests.get(url = URL, headers = HEADS)
     temp = r.json()
     id = temp["users"][0]["_id"]
+    print(id)
     namefollows = []
     t = helix.get_user_follows(from_id = id)
     namefollows = []
     for i in t:
-        namefollows.append(i["to_name"])
+        namefollows.append(i["to_id"])
     #print(namefollows)
     return namefollows
 
@@ -177,10 +178,10 @@ def ban_list(lista):
     return lista_baneados
 
 def main():
-    canales = canales_de_cliente("albertto1198") #Aqui debe de estar el input() para que el cliente ponga su nombre de twitch
+    canales = canales_de_cliente("Delt4Forc3") #Aqui debe de estar el input() para que el cliente ponga su nombre de twitch
     print("Estos son tus canales")
     print(canales)
-
+"""
     prueba2 = agrupacioncanales(canales)
     print("estos se van a evaluar")
     print(prueba2)
@@ -195,6 +196,6 @@ def main():
     #lista_baneados = ban_list(streamers)
 
     #print("Listas de baneados")
-    #print(lista_baneados)
+    #print(lista_baneados)"""
 if __name__ == "__main__":
     main()
