@@ -1,7 +1,7 @@
 import sqlite3
 from abs.absDataBase import AbstactClassDB
 
-class basedatos(AbstactClassDB):
+class database(AbstactClassDB):
     def __init__(self):
         self.version_SQLite()
         self.crear_tablas()

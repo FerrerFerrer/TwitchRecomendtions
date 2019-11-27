@@ -5,7 +5,7 @@ sys.path.append('imp')
 from BoltFunctional import Bolt
 from mBD import mockBD
 from APIfuncional import apiTwitch
-from basedatos import basedatos
+from basedatos import database
 
 #Global setting variables
 MOTHER_PATH = "saves\{}.txt"    #Static path name to save options for later
@@ -16,7 +16,7 @@ AVOID_BLOCKED = True            #Avoid blocked channels to recomendations (block
 DEBUG = True                    #If true, then print debug information to console
 
 workingapi = apiTwitch()
-coneccion_bd = basedatos()
+coneccion_bd = database()
 workingbolt = Bolt(workingapi, coneccion_bd)
 
 def getOptions():
@@ -68,7 +68,7 @@ def takeAction():
 def doAction(comand):
     if comand is 0:
         print("Goodbye!")
-        sys.exit()
+        return -1
 
     elif comand is 1:
         workingbolt.ls_channel = coneccion_bd.get_list()
@@ -105,7 +105,10 @@ def main(deb):
     loop = True
     while(loop):
         com = takeAction()
-        doAction(com)
+        salir = doAction(com)
+        
+        if salir is not None:
+            return
         if deb:
             loop = False
 
