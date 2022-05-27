@@ -24,9 +24,11 @@ class TestBolt(unittest.TestCase):
         self.ch6 = Channel(17, 20, name = "Jesus")
         self.ch7 = Channel(18, 1, name = "Chuy")
         self.ch8 = Channel(19, 7, name = "Lupe")
-        self.channels = [self.ch1, self.ch2, self.ch3, self.ch4, self.ch5, self.ch6, self.ch7, self.ch8]
+        self.ch9 = Channel("20","8", name ="Patty")
+        self.ch10 = Channel("20",5 , name ="Ignacio")
+        self.channels = [self.ch1, self.ch2, self.ch3, self.ch4, self.ch5, self.ch6, self.ch7, self.ch8, self.ch9, self.ch10]
         self.apireturn = [["Carlos", 1], ["Roberto", 2], ["Rodrigo", 3], ["Jesus", 4],
-        ["Ricardo", 5], ["Chuy", 6], ["Lupe", 7], ["Ricardo", 8]]
+        ["Ricardo", 5], ["Chuy", 6], ["Lupe", 7], ["Ricardo", 8],["Patty", 9], ["Ignacio", 10]]
 
 
         #Bolt
